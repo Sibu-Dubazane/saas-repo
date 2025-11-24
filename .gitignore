@@ -1,0 +1,94 @@
+############################################################
+# OS / EDITOR
+############################################################
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.code-workspace
+
+############################################################
+# ENV & SECRETS
+############################################################
+.env
+.env.*
+*.env
+backend/.env
+docker/.env
+docker/*.env
+
+############################################################
+# PYTHON
+############################################################
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.eggs/
+.venv/
+dist/
+build/
+coverage/
+htmlcov/
+.pytest_cache/
+.coverage
+alembic.ini.swp
+
+# Local Python DB files
+*.sqlite3
+*.db
+test.db
+test_db
+backend/*.db
+backend/*.sqlite3
+8.sqlite3
+
+############################################################
+# NODE / NEXT.JS / FRONTEND
+############################################################
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.turbo/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.tsbuildinfo
+
+############################################################
+# LOGS & REPORTS
+############################################################
+*.log
+logs/
+coverage/
+reports/
+
+############################################################
+# DOCKER / COMPOSE / TRAEFIK
+############################################################
+# Docker related
+*.pid
+pgdata/
+postgres-data/
+
+# Docker build archives
+*.tar
+*.gz
+
+# Traefik certs (local)
+reverse-proxy/acme.json
+
+############################################################
+# LOCAL DATA / UPLOADS / TEMP
+############################################################
+uploads/
+storage/
+tmp/
+*.bak
+
+############################################################
+# MISC & SWAP
+############################################################
+*.swp
+*.swo

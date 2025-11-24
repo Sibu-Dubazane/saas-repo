@@ -1,0 +1,5 @@
+# Placeholder for future dynamic rules (e.g., middleware, TLS)
+http:
+  middlewares: {}
+  routers: {}
+  services: {}

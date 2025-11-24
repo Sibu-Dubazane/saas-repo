@@ -1,0 +1,9 @@
+# Not mounted in our compose since we pass flags via command
+# Kept here for reference if I prefer file-based config later.
+api:
+  dashboard: true
+providers:
+  docker: {}
+entryPoints:
+  web:
+    address: ":80"
