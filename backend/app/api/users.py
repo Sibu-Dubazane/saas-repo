@@ -1,66 +1,15 @@
-# Protected user endpoint example
+"""Deprecated module: use `app.api.v1.users`."""
 
-from fastapi import APIRouter, Depends, HTTPException
-from sqlalchemy.orm import Session
-from app.schemas import UserPublic, RoleUpdate
-from app.db.models import User, UserRole
-from app.deps import (
-    get_current_user,
-    get_db,
-    get_current_master_admin,
-    get_current_active_superuser,
+from __future__ import annotations
+
+import warnings
+
+from app.api.v1.users import router
+
+warnings.warn(
+    "Importing `app.api.users` is deprecated. Use `app.api.v1.users` instead.",
+    DeprecationWarning,
+    stacklevel=2,
 )
 
-router = APIRouter(prefix="/users", tags=["users"])
-
-# GET /user
-@router.get("/me", response_model=UserPublic)
-def read_me(current: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    # current is already a DB user instance from dependency
-    return current
-
-@router.get("/", response_model=list[UserPublic])
-def list_users(
-    _: User = Depends(get_current_master_admin),
-    db: Session = Depends(get_db)
-):
-    return db.query(User).all()
-
-# GET /users/{user_id} — superusers only
-
-@router.get("/{user_id}", response_model=UserPublic)
-def read_user_by_id(
-    user_id: int,
-    current: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
-):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-
-    elevated_roles = {
-        UserRole.SUPERUSER,
-        UserRole.MASTER_ADMIN,
-        UserRole.NORMAL_ADMIN,
-    }
-    if current.role not in elevated_roles and current.id != user_id:
-        raise HTTPException(status_code=403, detail="Not authorized")
-
-    return user
-
-# PATCH /users/{user_id}/role - superuser only
-@router.patch("/{user_id}/role", response_model=UserPublic)  
-def update_user_role(
-    user_id: int,
-    payload: RoleUpdate,
-    current: User = Depends(get_current_active_superuser),
-    db: Session = Depends(get_db),
-):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    user.role = payload.role
-    db.add(user)
-    db.commit()
-    db.refresh(user)
-    return user
+__all__ = ["router"]

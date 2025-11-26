@@ -91,7 +91,7 @@ export default function UserDetailsPage() {
             <button className="button is-info">Edit profile</button>
             <button className="button is-danger is-light">Suspend</button>
           </div>
-        </div>
+        </div> 
       </div>
     </section>
   );
