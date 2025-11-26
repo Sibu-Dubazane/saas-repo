@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { api, API_PREFIX } from "@/lib/api";
 
 const getInitials = (email?: string) => {
   if (!email) return "?";
@@ -16,7 +16,7 @@ export default function Topbar() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    api.get("/api/v1/users/me").then((r) => setUser(r.data)).catch(() => {});
+    api.get(`${API_PREFIX}/users/me`).then((r) => setUser(r.data)).catch(() => {});
   }, []);
 
   const isAdmin =

@@ -98,7 +98,8 @@ tmp/
 docs/
 backup-guide.md
 *.zip
--.zip  
+*-.zip
 backups/
 postgres-*.sql
 login-troubleshooting.md
+PR_REVIEW.md

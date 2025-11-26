@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { api, API_PREFIX } from "@/lib/api";
 
 export default function ProfilePage() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    api.get("/api/v1/users/me").then((r) => setUser(r.data));
+    api.get(`${API_PREFIX}/users/me`).then((r) => setUser(r.data));
   }, []);
 
   if (!user) return <p>Loading...</p>;

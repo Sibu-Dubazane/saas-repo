@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { api, API_PREFIX } from "@/lib/api";
 import { useParams } from "next/navigation";
 
 export default function UserDetailsPage() {
@@ -11,7 +11,7 @@ export default function UserDetailsPage() {
 
   useEffect(() => {
     api
-      .get(`/api/v1/users/${id}`)
+      .get(`${API_PREFIX}/users/${id}`)
       .then((r) => setUser(r.data))
       .catch(() => setErr("Failed to load user"));
   }, [id]);

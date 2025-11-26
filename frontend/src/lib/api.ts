@@ -54,7 +54,7 @@ export const api = axios.create({
 });
 
 
-const API_PREFIX = "/api/v1";
+export const API_PREFIX = "/api/v1";
 
 // Normal user profile
 export async function getCurrentUser() {

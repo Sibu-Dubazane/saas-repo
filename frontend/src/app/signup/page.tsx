@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { api, extractErrorMessage } from "@/lib/api";
+import { api, API_PREFIX, extractErrorMessage } from "@/lib/api";
 
 export default function SignupPage() {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ export default function SignupPage() {
 
     setLoading(true);
     try {
-      await api.post("/api/v1/auth/signup", {
+      await api.post(`${API_PREFIX}/auth/signup`, {
         email,
         password,
         password_confirm: passwordConfirm,

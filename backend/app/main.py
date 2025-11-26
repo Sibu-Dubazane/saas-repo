@@ -7,7 +7,7 @@ from app.core.config import settings
 from app.core.rate_limiter import init_rate_limiter
 from app.api.v1 import router as v1_router
 
-app = FastAPI(title="SaaS Backend", version="0.2.0")
+app = FastAPI(title="SaaS Backend", version="0.3.0")
 
 # CORS for local dev (origins from env)
 app.add_middleware(

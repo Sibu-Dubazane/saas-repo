@@ -105,3 +105,11 @@ def test_login_rate_limited():
         headers=headers,
     )
     assert blocked.status_code == 429
+
+
+def test_legacy_routes_removed():
+    """Legacy /auth and /users routes should respond with 404 after v0.3.0."""
+    login = client.post("/auth/login", json={"email": "ghost@example.com", "password": "nope"})
+    assert login.status_code == 404
+    me = client.get("/users/me")
+    assert me.status_code == 404
