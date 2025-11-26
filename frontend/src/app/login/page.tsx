@@ -14,7 +14,7 @@ export default function LoginPage() {
     setMsg("");
     setLoading(true);
     try {
-      await api.post("/auth/login", { email, password });
+      await api.post("/api/v1/auth/login", { email, password });
       window.location.href = "/dashboard";
     } catch (err: unknown) {
       setMsg(extractErrorMessage(err));

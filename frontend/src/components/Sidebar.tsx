@@ -9,7 +9,7 @@ function Sidebar() {
 
   useEffect(() => {
     api
-      .get("/users/me")
+      .get("/api/v1/users/me")
       .then((r) => setUser(r.data))
       .catch(() => {});
   }, []);

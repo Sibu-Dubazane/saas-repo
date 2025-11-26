@@ -7,7 +7,7 @@ export default function ProfilePage() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    api.get("/users/me").then((r) => setUser(r.data));
+    api.get("/api/v1/users/me").then((r) => setUser(r.data));
   }, []);
 
   if (!user) return <p>Loading...</p>;

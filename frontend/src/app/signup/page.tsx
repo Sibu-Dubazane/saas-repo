@@ -21,7 +21,7 @@ export default function SignupPage() {
 
     setLoading(true);
     try {
-      await api.post("/auth/signup", {
+      await api.post("/api/v1/auth/signup", {
         email,
         password,
         password_confirm: passwordConfirm,

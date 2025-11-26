@@ -54,15 +54,17 @@ export const api = axios.create({
 });
 
 
+const API_PREFIX = "/api/v1";
+
 // Normal user profile
 export async function getCurrentUser() {
-  const res = await api.get("/users/me");
+  const res = await api.get(`${API_PREFIX}/users/me`);
   return res.data;
 }
 
 // Admin-only list of all users
 export async function getUsers() {
-  const res = await api.get("/users");
+  const res = await api.get(`${API_PREFIX}/users`);
   return res.data;
 }
 

@@ -23,7 +23,7 @@ export default function UsersPage() {
 
   useEffect(() => {
     api
-      .get("/users")
+      .get("/api/v1/users")
       .then((r) => setUsers(r.data))
       .catch(() => {});
   }, []);

@@ -7,7 +7,7 @@ export default function DashboardHome() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    api.get("/users/me").then((r) => setUser(r.data)).catch(() => {});
+    api.get("/api/v1/users/me").then((r) => setUser(r.data)).catch(() => {});
   }, []);
 
   if (!user) return <p>Loading...</p>;

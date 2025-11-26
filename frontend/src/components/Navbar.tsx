@@ -11,7 +11,7 @@ export default function Navbar() {
   useEffect(() => {
     let cancelled = false;
     api
-      .get("/users/me")
+      .get("/api/v1/users/me")
       .then(() => {
         if (!cancelled) {
           setIsAuthenticated(true);
@@ -29,7 +29,7 @@ export default function Navbar() {
 
   async function handleLogout() {
     try {
-      await api.post("/auth/logout");
+      await api.post("/api/v1/auth/logout");
     } finally {
       window.location.href = "/";
     }

@@ -16,7 +16,7 @@ export default function Topbar() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
-    api.get("/users/me").then((r) => setUser(r.data)).catch(() => {});
+    api.get("/api/v1/users/me").then((r) => setUser(r.data)).catch(() => {});
   }, []);
 
   const isAdmin =

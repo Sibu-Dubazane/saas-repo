@@ -1,6 +1,6 @@
 # FastAPI application factory and router wiring
 
-from fastapi import APIRouter, FastAPI, Request, status
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from app.core.config import settings
@@ -22,30 +22,6 @@ init_rate_limiter(app)
 
 # Versioned API routers
 app.include_router(v1_router)
-
-
-def _legacy_redirect(prefix: str):
-    async def handler(request: Request, path: str = ""):
-        suffix = f"/{path}" if path else ""
-        query = f"?{request.query_params}" if request and request.query_params else ""
-        target = f"/api/v1/{prefix}{suffix}{query}"
-        return RedirectResponse(
-            url=target,
-            status_code=status.HTTP_307_TEMPORARY_REDIRECT,
-        )
-
-    return handler
-
-
-legacy_router = APIRouter(include_in_schema=False)
-_methods = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
-
-legacy_router.api_route("/auth", methods=_methods)(_legacy_redirect("auth"))
-legacy_router.api_route("/auth/{path:path}", methods=_methods)(_legacy_redirect("auth"))
-legacy_router.api_route("/users", methods=_methods)(_legacy_redirect("users"))
-legacy_router.api_route("/users/{path:path}", methods=_methods)(_legacy_redirect("users"))
-
-app.include_router(legacy_router)
 
 
 @app.get("/", include_in_schema=False)

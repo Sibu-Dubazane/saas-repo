@@ -16,11 +16,14 @@ client = TestClient(app)
 STRONG_PASSWORD = "Sup3rSecurePwd!1"
 
 
+API_PREFIX = "/api/v1"
+
+
 @pytest.mark.order(1)
 def test_signup_and_login():
-    email = "test@example.com"
+    email = "testapi@example.com"
     r = client.post(
-        "/auth/signup",
+        f"{API_PREFIX}/auth/signup",
         json={
             "email": email,
             "password": STRONG_PASSWORD,
@@ -28,14 +31,14 @@ def test_signup_and_login():
         },
     )
     assert r.status_code in (200, 400)  # might exist if test reruns
-    r = client.post("/auth/login", json={"email": email, "password": STRONG_PASSWORD})
+    r = client.post(f"{API_PREFIX}/auth/login", json={"email": email, "password": STRONG_PASSWORD})
     assert r.status_code == 200
     token = r.json()["access_token"]
     cookie_header = r.headers.get("set-cookie", "")
     assert "access_token=" in cookie_header
     assert "HttpOnly" in cookie_header
     assert "Secure" in cookie_header
-    r = client.get("/users/me", cookies={"access_token": token})
+    r = client.get(f"{API_PREFIX}/users/me", cookies={"access_token": token})
     assert r.status_code == 200
     assert r.json()["email"] == email
 
@@ -44,16 +47,18 @@ def test_signup_and_login():
 def test_logout_clears_cookie():
     email = "logout-test@example.com"
     client.post(
-        "/auth/signup",
+        f"{API_PREFIX}/auth/signup",
         json={
             "email": email,
             "password": STRONG_PASSWORD,
             "password_confirm": STRONG_PASSWORD,
         },
     )
-    login = client.post("/auth/login", json={"email": email, "password": STRONG_PASSWORD})
+    login = client.post(
+        f"{API_PREFIX}/auth/login", json={"email": email, "password": STRONG_PASSWORD}
+    )
     assert login.status_code == 200
-    logout = client.post("/auth/logout")
+    logout = client.post(f"{API_PREFIX}/auth/logout")
     assert logout.status_code == 204
     cleared_header = logout.headers.get("set-cookie", "")
     assert "access_token=" in cleared_header
@@ -63,7 +68,7 @@ def test_logout_clears_cookie():
 @pytest.mark.order(3)
 def test_signup_rejects_weak_password():
     resp = client.post(
-        "/auth/signup",
+        f"{API_PREFIX}/auth/signup",
         json={
             "email": "weak-pass@example.com",
             "password": "short",
@@ -78,7 +83,7 @@ def test_signup_rejects_weak_password():
 def test_login_rate_limited():
     email = "ratelimit@example.com"
     client.post(
-        "/auth/signup",
+        f"{API_PREFIX}/auth/signup",
         json={
             "email": email,
             "password": STRONG_PASSWORD,
@@ -87,8 +92,16 @@ def test_login_rate_limited():
     )
     headers = {"X-Forwarded-For": "203.0.113.10"}
     for _ in range(5):
-        ok = client.post("/auth/login", json={"email": email, "password": STRONG_PASSWORD}, headers=headers)
+        ok = client.post(
+            f"{API_PREFIX}/auth/login",
+            json={"email": email, "password": STRONG_PASSWORD},
+            headers=headers,
+        )
         assert ok.status_code == 200
 
-    blocked = client.post("/auth/login", json={"email": email, "password": STRONG_PASSWORD}, headers=headers)
+    blocked = client.post(
+        f"{API_PREFIX}/auth/login",
+        json={"email": email, "password": STRONG_PASSWORD},
+        headers=headers,
+    )
     assert blocked.status_code == 429

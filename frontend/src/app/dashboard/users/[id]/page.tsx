@@ -11,7 +11,7 @@ export default function UserDetailsPage() {
 
   useEffect(() => {
     api
-      .get(`/users/${id}`)
+      .get(`/api/v1/users/${id}`)
       .then((r) => setUser(r.data))
       .catch(() => setErr("Failed to load user"));
   }, [id]);
