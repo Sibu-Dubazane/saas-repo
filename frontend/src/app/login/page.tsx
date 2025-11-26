@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { api, extractErrorMessage } from "@/lib/api";
+import { api, API_PREFIX, extractErrorMessage } from "@/lib/api";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ export default function LoginPage() {
     setMsg("");
     setLoading(true);
     try {
-      await api.post("/auth/login", { email, password });
+      await api.post(`${API_PREFIX}/auth/login`, { email, password });
       window.location.href = "/dashboard";
     } catch (err: unknown) {
       setMsg(extractErrorMessage(err));

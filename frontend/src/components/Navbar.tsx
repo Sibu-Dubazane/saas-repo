@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { api, API_PREFIX } from "@/lib/api";
 
 export default function Navbar() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -11,7 +11,7 @@ export default function Navbar() {
   useEffect(() => {
     let cancelled = false;
     api
-      .get("/users/me")
+      .get(`${API_PREFIX}/users/me`)
       .then(() => {
         if (!cancelled) {
           setIsAuthenticated(true);
@@ -29,7 +29,7 @@ export default function Navbar() {
 
   async function handleLogout() {
     try {
-      await api.post("/auth/logout");
+      await api.post(`${API_PREFIX}/auth/logout`);
     } finally {
       window.location.href = "/";
     }

@@ -2,11 +2,12 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse
 from app.core.config import settings
 from app.core.rate_limiter import init_rate_limiter
-from app.api import auth, users
+from app.api.v1 import router as v1_router
 
-app = FastAPI(title="SaaS Backend", version="0.1.0")
+app = FastAPI(title="SaaS Backend", version="0.3.0")
 
 # CORS for local dev (origins from env)
 app.add_middleware(
@@ -19,10 +20,11 @@ app.add_middleware(
 
 init_rate_limiter(app)
 
-# Routers
-app.include_router(auth.router)
-app.include_router(users.router)
+# Versioned API routers
+app.include_router(v1_router)
 
-@app.get("/")
-def health():
-    return {"status": "ok", "service": "backend"}
+
+@app.get("/", include_in_schema=False)
+def root_redirect():
+    """Redirect legacy callers to the versioned health endpoint."""
+    return RedirectResponse(url="/api/v1/health")

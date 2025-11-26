@@ -2,14 +2,14 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { api } from "@/lib/api";
+import { api, API_PREFIX } from "@/lib/api";
 
 function Sidebar() {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     api
-      .get("/users/me")
+      .get(`${API_PREFIX}/users/me`)
       .then((r) => setUser(r.data))
       .catch(() => {});
   }, []);

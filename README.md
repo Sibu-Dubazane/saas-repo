@@ -102,16 +102,20 @@ npm run dev
 ## 6. Security features
 
 - **Password policy:** `backend/app/core/password_policy.py` enforces 12+ chars, mixed complexity, optional HaveIBeenPwned checks.
-- **Rate limiting:** SlowAPI middleware with configurable limits for `/auth/signup` and `/auth/login`.
+- **Rate limiting:** SlowAPI middleware with configurable limits for `/api/v1/auth/signup` and `/api/v1/auth/login`.
 - **JWT handling:** Tokens are issued server-side (httpOnly cookie optional) with configurable expiry.
 - **Role-based access control:** `app/deps.py` enforces role gates (superuser/master/admin).
 - **Frontend:** Axios client ready for secure cookie mode (set `withCredentials=true`).
+
+## 7. Releases
+
+- **Latest:** v0.3.0 removes the legacy `/auth/*` and `/users/*` shims. All clients must call `/api/v1/...` endpoints directly. See `CHANGELOG.md` for migration steps and detailed notes.
 
 Future hardening ideas (optional): enable HTTPS via Traefik certificates, guard the Traefik dashboard, and add CI-powered SAST + dependency scans.
 
 ---
 
-## 7. Troubleshooting
+## 8. Troubleshooting
 
 | Symptom | Fix |
 |---------|-----|
@@ -122,7 +126,7 @@ Future hardening ideas (optional): enable HTTPS via Traefik certificates, guard 
 
 ---
 
-## 8. Next steps
+## 9. Next steps
 
 - Add CI (GitHub Actions) to run pytest, eslint, bandit/ruff, npm audit.
 - Switch frontend auth storage to secure cookies (remove `localStorage` tokens).

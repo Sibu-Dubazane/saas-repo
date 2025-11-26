@@ -1,7 +1,8 @@
-# Protected user endpoint example
+"""User management routes for API v1."""
 
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+
 from app.schemas import UserPublic, RoleUpdate
 from app.db.models import User, UserRole
 from app.deps import (
@@ -13,26 +14,25 @@ from app.deps import (
 
 router = APIRouter(prefix="/users", tags=["users"])
 
-# GET /user
+
 @router.get("/me", response_model=UserPublic)
 def read_me(current: User = Depends(get_current_user), db: Session = Depends(get_db)):
-    # current is already a DB user instance from dependency
     return current
+
 
 @router.get("/", response_model=list[UserPublic])
 def list_users(
     _: User = Depends(get_current_master_admin),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     return db.query(User).all()
 
-# GET /users/{user_id} — superusers only
 
 @router.get("/{user_id}", response_model=UserPublic)
 def read_user_by_id(
     user_id: int,
     current: User = Depends(get_current_user),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
 ):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
@@ -48,8 +48,8 @@ def read_user_by_id(
 
     return user
 
-# PATCH /users/{user_id}/role - superuser only
-@router.patch("/{user_id}/role", response_model=UserPublic)  
+
+@router.patch("/{user_id}/role", response_model=UserPublic)
 def update_user_role(
     user_id: int,
     payload: RoleUpdate,
@@ -64,3 +64,4 @@ def update_user_role(
     db.commit()
     db.refresh(user)
     return user
+

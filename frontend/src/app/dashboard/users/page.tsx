@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { api } from "@/lib/api";
+import { api, API_PREFIX } from "@/lib/api";
 
 const roleLabel = (role: string) => {
   if (role === "superuser") return "Superuser";
@@ -23,7 +23,7 @@ export default function UsersPage() {
 
   useEffect(() => {
     api
-      .get("/users")
+      .get(`${API_PREFIX}/users`)
       .then((r) => setUsers(r.data))
       .catch(() => {});
   }, []);
