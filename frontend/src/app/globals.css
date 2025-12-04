@@ -1,3 +1,4 @@
+/* ===== Design Tokens ===== */
 :root {
   --font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
   --bg: #eef3f9;
@@ -12,11 +13,12 @@
   --accent: #3cb2c3;
   --accent-strong: #1e8fa3;
   --danger: #de3d5b;
-  --shadow-soft: 0 20px 45px rgba(15, 23, 42, 0.12);
-  --shadow-card: 0 30px 60px rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 12px 30px rgba(15, 23, 42, 0.1);
+  --shadow-card: 0 20px 45px rgba(15, 23, 42, 0.12);
   font-family: var(--font-family);
 }
 
+/* ===== Global Base Styles ===== */
 *,
 *::before,
 *::after {
@@ -26,6 +28,8 @@
 body {
   margin: 0;
   min-height: 100vh;
+  font-size: 0.92rem;
+  line-height: 1.45;
   background:
     radial-gradient(circle at 20% 0%, rgba(60, 178, 195, 0.25), transparent 45%),
     radial-gradient(circle at 80% -20%, rgba(30, 143, 163, 0.2), transparent 40%),
@@ -34,10 +38,12 @@ body {
   font-family: var(--font-family);
 }
 
+/* ===== Global Links ===== */
 a {
   color: var(--accent);
 }
 
+/* ===== Navbar ===== */
 .navbar {
   background: rgba(255, 255, 255, 0.95);
   border-bottom: 1px solid rgba(221, 227, 237, 0.7);
@@ -45,6 +51,7 @@ a {
   position: sticky;
   top: 0;
   z-index: 20;
+  padding: 0.35rem 1.25rem;
 }
 
 .navbar-item,
@@ -52,36 +59,39 @@ a {
   font-weight: 600;
   letter-spacing: 0.02em;
   color: var(--text);
+  font-size: 0.9rem;
 }
 
 .navbar-burger span {
   background-color: var(--muted);
 }
 
+/* ===== App Shell & Sections ===== */
 .app-shell {
   width: 100%;
   background: transparent;
-  padding-bottom: 3rem;
+  padding-bottom: 2rem;
 }
 
 .section,
 .app-shell section {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
+/* ===== Cards & Panels ===== */
 .card {
   border: 1px solid rgba(221, 227, 237, 0.6);
-  border-radius: 20px;
+  border-radius: 10px;
   background: var(--surface);
   box-shadow: var(--shadow-soft);
 }
 
 .section-panel {
   border: 1px solid rgba(221, 227, 237, 0.8);
-  border-radius: 26px;
+  border-radius: 12px;
   background: var(--surface);
   box-shadow: var(--shadow-card);
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .section-panel h1,
@@ -99,7 +109,7 @@ a {
 
 .panel-heading span {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.85rem;
 }
 
 .panel-heading .badge {
@@ -110,10 +120,13 @@ a {
   color: var(--muted);
 }
 
+/* ===== Primary Buttons ===== */
 .button.is-link {
   background: linear-gradient(120deg, var(--accent), var(--accent-strong));
   border: none;
   box-shadow: 0 10px 20px rgba(30, 143, 163, 0.35);
+  border-radius: 12px;
+  padding: 0.45rem 1.25rem;
 }
 
 .button.is-link.is-light {
@@ -127,23 +140,25 @@ a {
   box-shadow: none;
 }
 
+/* ===== Tables ===== */
 .table {
   background: transparent;
-  border-radius: 18px;
+  border-radius: 8px;
 }
 
 .table th,
 .table td {
   border: none;
-  padding: 1rem;
+  padding: 0.55rem;
 }
 
 .table-container {
-  border-radius: 20px;
+  border-radius: 16px;
   background: var(--surface-muted);
-  padding: 1rem;
+  padding: 0.85rem;
 }
 
+/* ===== Dashboard Layout & Sidebar ===== */
 .dashboard-layout {
   display: flex;
   min-height: calc(100vh - 64px);
@@ -152,36 +167,36 @@ a {
 }
 
 .dashboard-layout aside {
-  width: 280px;
-  min-width: 280px;
+  width: 200px;
+  min-width: 200px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--surface-muted));
   border-right: 1px solid rgba(221, 227, 237, 0.8);
-  padding: 24px;
+  padding: 14px;
   box-shadow: inset -1px 0 0 rgba(221, 227, 237, 0.7);
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .sidebar-shell {
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .sidebar-brand {
   display: flex;
   align-items: center;
-  gap: 1.1rem;
-  padding: 1.25rem 1.5rem;
-  border-radius: 24px;
+  gap: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 14px;
   border: 1px solid rgba(221, 227, 237, 0.85);
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(247, 251, 255, 0.9));
   box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
   background: rgba(60, 178, 195, 0.15);
   color: var(--accent-strong);
   font-weight: 700;
@@ -198,13 +213,13 @@ a {
 .sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.1rem;
 }
 
 .sidebar-section {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .sidebar-divider {
@@ -216,9 +231,9 @@ a {
 .sidebar-link {
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  padding: 0.8rem 0.85rem;
-  border-radius: 16px;
+  gap: 0.6rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 8px;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
@@ -242,8 +257,8 @@ a {
   align-items: center;
   gap: 0.65rem;
   color: var(--muted);
-  padding: 0.65rem 0.75rem;
-  border-radius: 14px;
+  padding: 0.5rem 0.6rem;
+  border-radius: 10px;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
@@ -255,9 +270,9 @@ a {
 }
 
 .menu-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
   background: rgba(60, 178, 195, 0.1);
   display: grid;
   place-items: center;
@@ -279,6 +294,7 @@ a {
   margin-bottom: 0.5rem;
 }
 
+/* ===== Dashboard Main & Topbar ===== */
 .dashboard-main {
   display: flex;
   flex-direction: column;
@@ -289,7 +305,7 @@ a {
 .dashboard-main .topbar {
   background: var(--surface);
   border-bottom: 1px solid rgba(221, 227, 237, 0.8);
-  padding: 1.25rem 2.5rem;
+  padding: 0.65rem 1.2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -303,6 +319,7 @@ a {
   box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
 }
 
+/* ===== Landing Header ===== */
 .landing-topbar {
   width: 100%;
   margin: 0;
@@ -317,18 +334,18 @@ a {
 .landing-topbar-inner {
   width: min(1180px, 100%);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: 0.6rem;
   flex-wrap: wrap;
 }
 
 .landing-brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   flex: 0 1 auto;
 }
 
@@ -352,9 +369,9 @@ a {
 }
 
 .landing-brand .brand-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 11px;
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
   font-size: 0.9rem;
 }
 
@@ -366,14 +383,14 @@ a {
 
 .landing-brand-copy .subtitle-muted {
   margin: 0;
-  font-size: 0.7rem;
-  letter-spacing: 0.06em;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
 .landing-brand-title {
   margin: 0;
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 600;
   color: var(--text);
 }
@@ -382,28 +399,29 @@ a {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 0.35rem;
   flex: 0 1 auto;
 }
 
 .landing-nav-links .sidebar-link {
   min-width: 0;
-  padding: 0.45rem 0.65rem;
+  padding: 0.35rem 0.5rem;
   border: none;
   background: transparent;
   gap: 0.5rem;
 }
 
 .landing-nav-links .sidebar-link .menu-icon {
-  width: 26px;
-  height: 26px;
-  border-radius: 10px;
+  width: 22px;
+  height: 22px;
+  border-radius: 8px;
   font-size: 0.85rem;
 }
 
+/* ===== Landing CTAs ===== */
 .pill-link {
   border-radius: 999px;
-  padding: 0.45rem 1.1rem;
+  padding: 0.3rem 0.75rem;
   border: 1px solid rgba(221, 227, 237, 0.85);
   color: var(--text);
   font-weight: 600;
@@ -423,7 +441,7 @@ a {
 
 .cta-link {
   border-radius: 999px;
-  padding: 0.5rem 1.25rem;
+  padding: 0.35rem 0.85rem;
   font-weight: 600;
   font-size: 0.9rem;
   color: white;
@@ -439,17 +457,18 @@ a {
   box-shadow: 0 14px 24px rgba(42, 123, 199, 0.35);
 }
 
+/* ===== Mobile Toggle ===== */
 .mobile-toggle {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 4px;
-  padding: 0.35rem 0.6rem;
+  gap: 2px;
+  padding: 0.3rem 0.5rem;
   border-radius: 12px;
 }
 
 .mobile-toggle span {
-  width: 18px;
+  width: 16px;
   height: 2px;
   border-radius: 999px;
   background: var(--text);
@@ -469,18 +488,19 @@ a {
   transform: translateY(-4px) rotate(-45deg);
 }
 
+/* ===== Dashboard Topbar Controls ===== */
 .refined-topbar {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.1rem;
   flex-wrap: wrap;
 }
 
 .topbar-heading {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.7rem;
   flex: 1 1 320px;
 }
 
@@ -492,23 +512,24 @@ a {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
   justify-content: flex-end;
   flex: 1 1 360px;
 }
 
 .topbar-search {
   flex: 1 1 220px;
-  min-width: 200px;
+  min-width: 180px;
 }
 
+/* ===== Search Input ===== */
 .search-input {
   width: 100%;
   border-radius: 999px;
   border: 1px solid rgba(221, 227, 237, 0.9);
-  padding: 0.6rem 1.25rem;
+  padding: 0.4rem 0.85rem;
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 5px 12px rgba(15, 23, 42, 0.06);
   font-weight: 500;
 }
 
@@ -517,24 +538,25 @@ a {
   border: 1px solid rgba(221, 227, 237, 0.9);
   color: var(--muted);
   border-radius: 999px;
-  padding-inline: 1.25rem;
+  padding-inline: 1rem;
 }
 
+/* ===== User Summary Pills ===== */
 .user-summary-pill {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.6rem 1rem;
-  border-radius: 20px;
+  gap: 0.55rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 14px;
   border: 1px solid rgba(221, 227, 237, 0.9);
   background: var(--surface-muted);
-  min-width: 260px;
+  min-width: 220px;
 }
 
 .user-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
   background: rgba(60, 178, 195, 0.15);
   color: var(--accent-strong);
   font-weight: 600;
@@ -606,12 +628,13 @@ a {
   }
 }
 
+/* ===== User Summary ===== */
 .user-summary {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.65rem 1rem;
-  border-radius: 20px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 14px;
   border: 1px solid rgba(221, 227, 237, 0.9);
   background: var(--surface-muted);
 }
@@ -622,7 +645,7 @@ a {
 }
 
 .dashboard-main main {
-  padding: 2.5rem;
+  padding: 2rem;
 }
 
 .tag {
@@ -648,7 +671,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 0.5rem;
   flex-wrap: wrap;
 }
 
@@ -657,17 +680,18 @@ a {
   min-width: 220px;
 }
 
+/* ===== User Summary Grid ===== */
 .user-summary-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .user-summary-card {
-  border-radius: 18px;
+  border-radius: 12px;
   background: linear-gradient(180deg, rgba(60, 178, 195, 0.1), var(--surface));
   border: 1px solid rgba(60, 178, 195, 0.25);
-  padding: 1rem 1.25rem;
+  padding: 0.75rem 1rem;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1);
   display: flex;
   flex-direction: column;
@@ -675,7 +699,7 @@ a {
 }
 
 .user-summary-card .value {
-  font-size: 1.7rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--text);
 }
@@ -687,10 +711,11 @@ a {
   font-size: 0.7rem;
 }
 
+/* ===== Users Page ===== */
 .users-shell {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
 .users-hero {
@@ -707,13 +732,13 @@ a {
 }
 
 .users-toolbar-card {
-  padding: 1.75rem 2rem;
+  padding: 1.3rem 1.5rem;
 }
 
 .users-toolbar {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.25rem;
+  gap: 0.9rem;
   align-items: center;
   justify-content: space-between;
 }
@@ -723,22 +748,22 @@ a {
   min-width: 220px;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.35rem;
 }
 
 .users-toolbar-chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.4rem;
   color: var(--muted);
 }
 
 .chip {
   border-radius: 999px;
-  padding: 0.35rem 1rem;
+  padding: 0.3rem 0.8rem;
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
@@ -754,26 +779,27 @@ a {
 }
 
 .users-directory {
-  padding: 2rem;
+  padding: 1.5rem;
 }
 
+/* ===== User Cards ===== */
 .users-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   margin-top: 1rem;
 }
 
 .user-card {
   border: 1px solid rgba(221, 227, 237, 0.7);
-  border-radius: 24px;
-  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+  padding: 0.75rem 0.95rem;
   display: grid;
   grid-template-columns: 1.5fr 2fr auto;
   gap: 1rem;
   align-items: center;
   background: linear-gradient(130deg, rgba(255, 255, 255, 0.8), var(--surface));
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
   cursor: pointer;
   transition: transform 0.2s ease, border 0.2s ease, box-shadow 0.2s ease;
 }
@@ -781,7 +807,7 @@ a {
 .user-card:hover {
   transform: translateY(-3px);
   border-color: rgba(60, 178, 195, 0.4);
-  box-shadow: 0 30px 55px rgba(15, 23, 42, 0.12);
+  box-shadow: 0 16px 28px rgba(15, 23, 42, 0.1);
 }
 
 .user-card-primary {
@@ -791,9 +817,9 @@ a {
 }
 
 .avatar-pill {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
   display: grid;
   place-items: center;
   font-weight: 700;
@@ -804,7 +830,7 @@ a {
 .user-card-meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 0.85rem;
+  gap: 0.65rem;
 }
 
 .user-meta-block {
@@ -816,14 +842,14 @@ a {
 .meta-label {
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--muted);
 }
 
 .user-card-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.4rem;
   justify-content: flex-end;
 }
 
@@ -839,7 +865,7 @@ a {
 
 .pill-soft {
   border-radius: 999px;
-  padding: 0.35rem 0.9rem;
+  padding: 0.3rem 0.75rem;
   font-weight: 600;
   font-size: 0.85rem;
   color: var(--muted);
@@ -849,7 +875,7 @@ a {
 .pill-outline {
   border: 1px solid rgba(221, 227, 237, 0.9);
   border-radius: 999px;
-  padding: 0.35rem 0.95rem;
+  padding: 0.3rem 0.8rem;
   font-weight: 600;
   color: var(--text);
 }
@@ -858,7 +884,7 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.35rem 1rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 999px;
   font-weight: 600;
   font-size: 0.85rem;
@@ -866,8 +892,8 @@ a {
 
 .empty-state {
   border: 1px dashed rgba(221, 227, 237, 0.9);
-  border-radius: 20px;
-  padding: 2rem;
+  border-radius: 16px;
+  padding: 1.5rem;
   text-align: center;
   background: var(--surface-muted);
 }
@@ -882,12 +908,13 @@ a {
   }
 }
 
+/* ===== Glass Inputs ===== */
 .input-glass {
   border-radius: 999px;
-  padding: 0.65rem 1rem;
+  padding: 0.55rem 0.85rem;
   border: 1px solid rgba(221, 227, 237, 0.8);
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.07);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.07);
 }
 
 .table tbody tr:hover {
@@ -895,49 +922,51 @@ a {
 }
 
 .space-y-6 > * + * {
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
 }
 
+/* ===== Metrics ===== */
 .metric-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
 }
 
 .metric-card {
-  border-radius: 20px;
+  border-radius: 12px;
   border: 1px solid rgba(221, 227, 237, 0.9);
-  padding: 1.25rem 1.5rem;
+  padding: 0.85rem 1.05rem;
   background: var(--surface);
   box-shadow: 0 18px 35px rgba(15, 23, 42, 0.06);
   display: flex;
   flex-direction: column;
-  gap: 0.35rem;
+  gap: 0.25rem;
 }
 
 .metric-label {
   color: var(--muted);
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   font-size: 0.7rem;
 }
 
 .metric-value {
-  font-size: 2rem;
+  font-size: 1.35rem;
   font-weight: 700;
   color: var(--text);
 }
 
+/* ===== Badges ===== */
 .badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  padding: 0.35rem 0.9rem;
+  padding: 0.22rem 0.6rem;
   border: 1px solid transparent;
 }
 
@@ -961,33 +990,34 @@ a {
   color: #de3d5b;
 }
 
+/* ===== Panel Actions ===== */
 .panel-actions {
   display: flex;
-  gap: 0.9rem;
+  gap: 0.7rem;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: 1.5rem;
+  margin-top: 1.1rem;
 }
 
 .panel-actions .button {
   border-radius: 999px;
-  padding-inline: 1.75rem;
+  padding-inline: 1.4rem;
 }
 
-/* Auth experience */
+/* ===== Auth Experience ===== */
 .auth-shell {
   min-height: calc(100vh - 80px);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   align-items: center;
-  gap: 3rem;
-  padding-block: 2rem;
+  gap: 2.25rem;
+  padding-block: 1.5rem;
 }
 
 .auth-hero {
-  padding: 2rem;
+  padding: 1.5rem;
   background: linear-gradient(130deg, rgba(60, 178, 195, 0.18), rgba(255, 255, 255, 0.6));
-  border-radius: 32px;
+  border-radius: 20px;
   border: 1px solid rgba(60, 178, 195, 0.25);
   box-shadow: var(--shadow-soft);
 }
@@ -1004,21 +1034,21 @@ a {
 
 .auth-panel {
   background: var(--surface);
-  border-radius: 28px;
+  border-radius: 14px;
   border: 1px solid rgba(221, 227, 237, 0.9);
   box-shadow: var(--shadow-card);
-  padding: 2.5rem;
+  padding: 1.4rem;
 }
 
 .auth-panel form {
   margin-top: 1.5rem;
   display: grid;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .glass-input {
-  border-radius: 16px;
-  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
   border: 1px solid rgba(221, 227, 237, 0.9);
   background: rgba(255, 255, 255, 0.8);
   transition: border 0.2s ease, box-shadow 0.2s ease;
@@ -1031,8 +1061,8 @@ a {
 }
 
 .auth-panel .button {
-  padding-block: 0.9rem;
-  border-radius: 16px;
+  padding-block: 0.75rem;
+  border-radius: 12px;
 }
 
 .auth-panel .subtitle-muted {
@@ -1043,7 +1073,7 @@ a {
   background: rgba(60, 178, 195, 0.15);
   color: var(--accent-strong);
   border-radius: 999px;
-  padding: 0.35rem 1.2rem;
+  padding: 0.3rem 0.95rem;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.75rem;
